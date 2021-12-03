@@ -1,5 +1,5 @@
 import React, {
-  FC, useRef, MouseEvent, useState, FormEvent,
+  FC, useRef, MouseEvent, useState, FormEvent, useEffect,
 } from 'react';
 import { uuid } from 'uuidv4';
 import './AnimalFormModal.scss';
@@ -16,11 +16,15 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal }) => {
   const [imgSrcInput, setImgSrcInput] = useState('');
   const [speciesInput, setSpeciesInput] = useState('');
 
-  const backgroundRef = useRef<HTMLDivElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const animalData = useAppSelector((state) => state.animals);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    firstInputRef.current?.focus();
+  }, []);
 
   const closeModalWithClickOutside = (e: MouseEvent) => {
     if (modalRef.current!.contains(e.target as HTMLElement)) {
@@ -51,7 +55,6 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal }) => {
   return (
     <div className="modal">
       <div
-        ref={backgroundRef}
         className="modal__background"
         onClick={(e) => closeModalWithClickOutside(e)}
       >
@@ -70,6 +73,7 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal }) => {
                     type="text"
                     className="form__text-input"
                     placeholder="Animal name"
+                    ref={firstInputRef}
                     value={nameInput}
                     onChange={(e) => setNameInput(e.target.value)}
                   />

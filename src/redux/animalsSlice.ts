@@ -26,13 +26,16 @@ const animalsSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<AnimalsState>) => ([...state, action.payload]),
+    addLanguageProperty: (state, action: PayloadAction<string>) => (
+      state.map((item) => ({ ...item, name: { ...item.name, [action.payload]: '' } }))
+    ),
   },
 });
 
-const { addItem } = animalsSlice.actions;
+const { addItem, addLanguageProperty } = animalsSlice.actions;
 const animalsReducer = animalsSlice.reducer;
 const animalsName = animalsSlice.name;
 
 export {
-  animalsSlice, animalsReducer, animalsName, addItem,
+  animalsSlice, animalsReducer, animalsName, addItem, addLanguageProperty,
 };
