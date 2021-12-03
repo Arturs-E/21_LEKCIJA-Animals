@@ -7,6 +7,10 @@ const Layout = () => (
     <div className="page-container">
       <div className="header">
         <h1 className="header__logo">Placeholder for logo</h1>
+        <select>
+          <option>EN</option>
+        </select>
+        <button>Add new language</button>
       </div>
       <div className="content-wrapper">
         <Outlet />
