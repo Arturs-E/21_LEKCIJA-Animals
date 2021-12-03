@@ -10,7 +10,16 @@ type AnimalsState = {
   species: string;
 }
 
-const initialState: AnimalsState[] = [];
+const getInitialState = () => {
+  const savedTasks = localStorage.getItem('animal-filter');
+  if (!savedTasks) {
+    return [];
+  }
+  const initialValue = JSON.parse(savedTasks);
+  return initialValue;
+};
+
+const initialState: AnimalsState[] = getInitialState();
 
 const animalsSlice = createSlice({
   name: 'animals',

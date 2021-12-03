@@ -10,8 +10,10 @@ type AnimalCardProps = {
 const AnimalCard:FC<AnimalCardProps> = ({ name, imgUrl, species }) => (
   <div className="animal-card">
     <img src={imgUrl} alt={name} className="animal-card__image" />
-    <h3 className="animal-card__name">{name}</h3>
-    <span className="animal-card__species">{species}</span>
+    <div className="animal-card__info-section">
+      <h3 className="animal-card__name">{name}</h3>
+      <span className="animal-card__species">{species}</span>
+    </div>
   </div>
 );
 

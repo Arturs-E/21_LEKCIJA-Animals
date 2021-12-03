@@ -1,7 +1,7 @@
 .animal-card {
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 24px;
+  row-gap: 8px;
   border: 1px solid transparent;
   border-radius: 4px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -15,12 +15,25 @@
     border-top-right-radius: 4px;
   }
 
+  &__info-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    padding: 5px;
+    place-self: end center;
+  }
+
   &__name {
     font-size: 22px;
+    text-align: center;
     text-transform: capitalize;
   }
 
   &__species {
+    color: #999;
+    font-size: 14px;
+    text-align: center;
     text-transform: capitalize;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import AnimalFormModal from '../../components/FormModals/AnimalFormModal';
 import { useAppSelector } from '../../redux/hooks';
@@ -9,6 +9,10 @@ const Home = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const animalData = useAppSelector((state) => state.animals);
   const activeLocale = useAppSelector((state) => state.languages.locale);
+
+  useEffect(() => {
+    localStorage.setItem('animal-filter', JSON.stringify(animalData));
+  }, [animalData]);
 
   const closeModal = () => {
     setIsModalVisible(false);
