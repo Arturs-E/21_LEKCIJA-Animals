@@ -1,8 +1,23 @@
 .header {
+  display: flex;
+  justify-content: space-between;
+
 
   &__logo {
     text-align: center;
   }
+
+  &__language-selection {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+}
+
+.header-wrapper {
+  max-width: 1000px;
+  padding: 28px;
+  margin: 0 auto 48px;
 }
 
 .content-wrapper {

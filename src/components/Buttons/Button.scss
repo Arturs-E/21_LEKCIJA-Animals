@@ -36,4 +36,21 @@
     }
   }
 
+  &--with-icon {
+    padding: 0;
+    background-color: #fff;
+    color: #28a745;
+    font-size: 28px;
+
+    &:hover {
+      background-color: #fff;
+      border: 1px solid transparent;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
+
 }

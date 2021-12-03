@@ -6,10 +6,15 @@ type ButtonProps = {
   type?: 'button' | 'submit' | 'reset';
   additionalClasses?: string;
   clickHandler?: () => void;
+  includesCloseIcon?: boolean;
 }
 
 const Button:FC<ButtonProps> = ({
-  title, type, additionalClasses, clickHandler,
+  title,
+  type,
+  additionalClasses,
+  clickHandler,
+  includesCloseIcon,
 }) => (
   <button
     type={type || 'button'}

@@ -1,0 +1,13 @@
+.animals {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 56px;
+  justify-items: stretch;
+
+  &__animal-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    gap: 16px;
+    justify-items: stretch;
+  }
+}

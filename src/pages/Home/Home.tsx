@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Home.scss';
 import AnimalFormModal from '../../components/FormModals/AnimalFormModal';
 import { useAppSelector } from '../../redux/hooks';
+import Button from '../../components/Buttons/Button';
+import AnimalCard from '../../components/AnimalCards/AnimalCard';
 
 const Home = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -13,21 +15,21 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <div>
+    <section className="animals">
+      <div className="animals__animal-card-grid">
         {
-          animalData.map(({ name, imgSrc, species }) => (
-            <div key={name[activeLocale]}>
-              <h4>{name[activeLocale]}</h4>
-              <span>{imgSrc}</span>
-              <h5>{species}</h5>
-            </div>
-          ))
+          animalData.length > 0
+            ? animalData.map(({
+              id, name, imgSrc, species,
+            }) => (
+              <AnimalCard key={id} name={name[activeLocale]} imgUrl={imgSrc} species={species} />
+            ))
+            : <h2>No animals added yet!</h2>
         }
       </div>
-      <button onClick={() => setIsModalVisible(true)}>Add animal</button>
+      <Button title="Add animal" clickHandler={() => setIsModalVisible(true)} />
       {isModalVisible && <AnimalFormModal closeModal={() => closeModal()} />}
-    </div>
+    </section>
   );
 };
 

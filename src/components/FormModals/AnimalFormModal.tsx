@@ -1,6 +1,7 @@
 import React, {
   FC, useRef, MouseEvent, useState, FormEvent,
 } from 'react';
+import { uuid } from 'uuidv4';
 import './AnimalFormModal.scss';
 import Button from '../Buttons/Button';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -36,7 +37,14 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal }) => {
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(addItem({ name: { en: nameInput }, imgSrc: imgSrcInput, species: speciesInput }));
+    dispatch(addItem(
+      {
+        id: uuid(),
+        name: { en: nameInput.toLowerCase() },
+        imgSrc: imgSrcInput,
+        species: speciesInput.toLowerCase(),
+      },
+    ));
     closeModal();
   };
 
