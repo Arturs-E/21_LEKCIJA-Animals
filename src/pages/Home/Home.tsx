@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './Home.scss';
-import Modal from '../../components/Modal/Modal';
+import AnimalFormModal from '../../components/FormModals/AnimalFormModal';
 import { useAppSelector } from '../../redux/hooks';
 
 const Home = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const animalData = useAppSelector((state) => state.animals);
+  const activeLocale = useAppSelector((state) => state.languages.locale);
 
   const closeModal = () => {
     setIsModalVisible(false);
@@ -16,8 +17,8 @@ const Home = () => {
       <div>
         {
           animalData.map(({ name, imgSrc, species }) => (
-            <div key={name.en}>
-              <h4>{name.en}</h4>
+            <div key={name[activeLocale]}>
+              <h4>{name[activeLocale]}</h4>
               <span>{imgSrc}</span>
               <h5>{species}</h5>
             </div>
@@ -25,7 +26,7 @@ const Home = () => {
         }
       </div>
       <button onClick={() => setIsModalVisible(true)}>Add animal</button>
-      {isModalVisible && <Modal closeModal={() => closeModal()} />}
+      {isModalVisible && <AnimalFormModal closeModal={() => closeModal()} />}
     </div>
   );
 };

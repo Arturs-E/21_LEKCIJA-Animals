@@ -21,5 +21,8 @@ const animalsSlice = createSlice({
 
 const { addItem } = animalsSlice.actions;
 const animalsReducer = animalsSlice.reducer;
+const animalsName = animalsSlice.name;
 
-export { animalsSlice, animalsReducer, addItem };
+export {
+  animalsSlice, animalsReducer, animalsName, addItem,
+};

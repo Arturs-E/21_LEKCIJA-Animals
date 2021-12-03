@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { animalsReducer } from './animalsSlice';
+import { animalsName, animalsReducer } from './animalsSlice';
+import { languagesName, languagesReducer } from './languageSlice';
 
 export const store = configureStore({
   reducer: {
-    animals: animalsReducer,
+    [animalsName]: animalsReducer,
+    [languagesName]: languagesReducer,
   },
 });
 
