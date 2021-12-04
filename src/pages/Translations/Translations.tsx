@@ -14,7 +14,8 @@ const Translations = () => {
 
   return (
     <section>
-      <table>
+      <h2 className="translations-page-heading">Animal name translations</h2>
+      <table className="animal-translations">
         <thead>
           <tr>
             <th>Animal</th>
@@ -33,16 +34,27 @@ const Translations = () => {
                 if (!index) {
                   return (
                     <tr key={uuid()}>
-                      <th rowSpan={numberOfLanguages}>{name.en}</th>
-                      <td>{item[0]}</td>
-                      <td>{item[1]}</td>
+                      <th
+                        rowSpan={numberOfLanguages}
+                        className="animal-translations__animal-name"
+                      >
+                        {name.en}
+                      </th>
+                      <td className="animal-translations__language-code">{item[0]}</td>
+                      <td className="animal-translations__animal-name">{item[1]}</td>
                     </tr>
                   );
                 }
                 return (numberOfLanguages > 1) && (
                 <tr key={uuid()}>
-                  <td>{item[0]}</td>
-                  <td>{item[1]}</td>
+                  <td className="animal-translations__language-code">{item[0]}</td>
+                  <td className="animal-translations__animal-name">
+                    {
+                      item[1]
+                        ? item[1]
+                        : <input type="text" />
+                    }
+                  </td>
                 </tr>
                 );
               })

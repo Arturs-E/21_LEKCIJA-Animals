@@ -1,0 +1,23 @@
+.translations-page-heading {
+  margin-bottom: 16px;
+}
+
+.animal-translations {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #444;
+
+  & th, td {
+    border: 1px solid #444;
+    padding: 4px 12px;
+  }
+
+  &__language-code {
+    text-transform: uppercase;
+  }
+
+  &__animal-name {
+    text-transform: capitalize;
+  }
+
+}

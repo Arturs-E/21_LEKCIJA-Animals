@@ -47,6 +47,11 @@
     border: 1px solid #333;
     border-radius: 4px;
     font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  &__language-option {
+    text-transform: uppercase;
   }
 }
 

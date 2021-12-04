@@ -65,7 +65,14 @@ const Layout = () => {
               >
                 {languagesData
                   .languages
-                  .map((item) => <option key={item}>{item}</option>)}
+                  .map((item) => (
+                    <option
+                      key={item}
+                      className="header__language-option"
+                    >
+                      {item}
+                    </option>
+                  ))}
               </select>
               <Button
                 title={<MdLibraryAdd />}

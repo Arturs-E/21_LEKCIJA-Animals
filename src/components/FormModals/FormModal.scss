@@ -35,6 +35,14 @@
     }
   }
 
+  &__select {
+    text-transform: capitalize;
+  }
+
+  &__select-option {
+    text-transform: capitalize;
+  }
+
   &__footer {
     display: flex;
     justify-content: right;

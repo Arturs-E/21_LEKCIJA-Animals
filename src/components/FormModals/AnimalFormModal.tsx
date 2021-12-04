@@ -106,14 +106,14 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
                         <select
                           id="animal-species"
                           ref={selectRef}
-                          className="form__text-input"
+                          className="form__text-input form__select"
                           placeholder="Animal species"
                           value={speciesInput}
                           onChange={(e) => setSpeciesInput(e.target.value)}
                         >
                           {
                             uniqueAnimalSpecies.map((item) => (
-                              <option key={item}>{item}</option>
+                              <option key={item} className="form__select-option">{item}</option>
                             ))
                           }
                         </select>
