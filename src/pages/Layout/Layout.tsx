@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Layout.scss';
-import { Outlet } from 'react-router-dom';
+import { MdLibraryAdd } from 'react-icons/md';
+import { Link, Outlet } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { setLocale } from '../../redux/languageSlice';
 import Button from '../../components/Buttons/Button';
@@ -24,12 +25,27 @@ const Layout = () => {
       <div className="page-container">
         <div className="header-wrapper">
           <div className="header">
-            <h1 className="header__logo">Placeholder for logo</h1>
+            <nav>
+              <Link to="/">
+                <img
+                  src="./assets/images/logo.png"
+                  alt="animal-logo"
+                  className="header__logo"
+                />
+              </Link>
+            </nav>
             <div className="header__language-selection">
-              <select onChange={(e) => onSelect(e.target.value)}>
+              <select
+                className="header__select-language"
+                onChange={(e) => onSelect(e.target.value)}
+              >
                 {languages.map((item) => <option key={item}>{item.toUpperCase()}</option>)}
               </select>
-              <Button title="+" clickHandler={() => setIsLanguageModalVisible(true)} />
+              <Button
+                title={<MdLibraryAdd />}
+                clickHandler={() => setIsLanguageModalVisible(true)}
+                additionalClasses="button--icon"
+              />
             </div>
           </div>
         </div>

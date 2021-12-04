@@ -1,7 +1,9 @@
 import React, {
   FC, FormEvent, MouseEvent, useEffect, useRef, useState,
 } from 'react';
-import './LanguageFromModal.scss';
+import { GrClose } from 'react-icons/gr';
+import './Modal.scss';
+import './FormModal.scss';
 import Button from '../Buttons/Button';
 import { useAppDispatch } from '../../redux/hooks';
 import { addLanguage } from '../../redux/languageSlice';
@@ -28,10 +30,19 @@ const LanguageFormModal:FC<LanguageFormModalProps> = ({ closeModal }) => {
     closeModal();
   };
 
+  const processInput = (value: string) => value.trim().toLowerCase();
+
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(addLanguage(languageCodeInput.toLowerCase()));
-    dispatch(addLanguageProperty(languageCodeInput.toLowerCase()));
+
+    const value = processInput(languageCodeInput);
+
+    if (!languageCodeInput || value.length !== 2) {
+      return;
+    }
+
+    dispatch(addLanguage(value));
+    dispatch(addLanguageProperty(value));
     closeModal();
   };
 
@@ -46,7 +57,7 @@ const LanguageFormModal:FC<LanguageFormModalProps> = ({ closeModal }) => {
             <form className="form" onSubmit={(e) => submitHandler(e)}>
               <div className="form__header">
                 <h2>Add new language</h2>
-                <Button title="X" clickHandler={closeModal} />
+                <Button title={<GrClose />} clickHandler={closeModal} additionalClasses="button--icon" />
               </div>
               <div className="form__content">
                 <label htmlFor="language-code" className="form__form-field">
@@ -56,6 +67,7 @@ const LanguageFormModal:FC<LanguageFormModalProps> = ({ closeModal }) => {
                     type="text"
                     className="form__text-input"
                     placeholder={'Language code, e.g. "EN"'}
+                    ref={inputRef}
                     value={languageCodeInput}
                     onChange={(e) => setLanguageCodeInput(e.target.value)}
                   />

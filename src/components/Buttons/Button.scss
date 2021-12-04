@@ -36,11 +36,15 @@
     }
   }
 
-  &--with-icon {
+  &--icon {
     padding: 0;
     background-color: #fff;
-    color: #28a745;
-    font-size: 28px;
+    font-size: 24px;
+
+    & path {
+      color: #28a745;
+      //stroke: #28a745;
+    }
 
     &:hover {
       background-color: #fff;

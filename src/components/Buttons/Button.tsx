@@ -1,12 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 import './Button.scss';
 
 type ButtonProps = {
-  title: string;
+  title: string | ReactElement;
   type?: 'button' | 'submit' | 'reset';
   additionalClasses?: string;
   clickHandler?: () => void;
-  includesCloseIcon?: boolean;
 }
 
 const Button:FC<ButtonProps> = ({
@@ -14,7 +13,6 @@ const Button:FC<ButtonProps> = ({
   type,
   additionalClasses,
   clickHandler,
-  includesCloseIcon,
 }) => (
   <button
     type={type || 'button'}

@@ -1,0 +1,43 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 48px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 36px;
+  }
+
+  &__form-field {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 4px;
+    column-gap: 6px;
+  }
+
+  &__text-input {
+    padding: 5px 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-size: 16px;
+
+    &:focus-visible {
+      border: 1px solid #80bdff;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: right;
+    gap: 12px;
+  }
+}

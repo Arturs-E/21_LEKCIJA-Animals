@@ -2,16 +2,19 @@ import React, {
   FC, useRef, MouseEvent, useState, FormEvent, useEffect,
 } from 'react';
 import { uuid } from 'uuidv4';
-import './AnimalFormModal.scss';
+import './Modal.scss';
+import './FormModal.scss';
+import { GrClose } from 'react-icons/gr';
 import Button from '../Buttons/Button';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addItem } from '../../redux/animalsSlice';
 
 type AnimalFormModalProps = {
   closeModal: () => void;
+  uniqueAnimalSpecies: string[];
 }
 
-const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal }) => {
+const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpecies }) => {
   const [nameInput, setNameInput] = useState('');
   const [imgSrcInput, setImgSrcInput] = useState('');
   const [speciesInput, setSpeciesInput] = useState('');
@@ -19,7 +22,6 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal }) => {
   const firstInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const animalData = useAppSelector((state) => state.animals);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -32,10 +34,6 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal }) => {
     }
     closeModal();
   };
-
-  const uniqueAnimalSpecies = animalData
-    .map((item) => item.species)
-    .filter((item, index, arr) => index === arr.indexOf(item));
 
   const [showSpeciesSelectInput, setShowSpeciesSelectInput] = useState(() => uniqueAnimalSpecies.length > 0);
 
@@ -63,7 +61,7 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal }) => {
             <form className="form" onSubmit={(e) => submitHandler(e)}>
               <div className="form__header">
                 <h2>Add animal</h2>
-                <Button title="X" clickHandler={closeModal} />
+                <Button title={<GrClose />} clickHandler={closeModal} additionalClasses="button--icon" />
               </div>
               <div className="form__content">
                 <label htmlFor="animal-name" className="form__form-field">
