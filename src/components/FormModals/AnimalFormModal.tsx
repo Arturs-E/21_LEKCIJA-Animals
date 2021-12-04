@@ -21,12 +21,17 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
 
   const firstInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const selectRef = useRef<HTMLSelectElement>(null);
 
+  const availableLanguages = useAppSelector((state) => state.languages.languages);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     firstInputRef.current?.focus();
   }, []);
+
+  const animalNamesForAllLanguages = availableLanguages
+    .reduce((prev, curr) => ({ ...prev, [curr]: '' }), {});
 
   const closeModalWithClickOutside = (e: MouseEvent) => {
     if (modalRef.current!.contains(e.target as HTMLElement)) {
@@ -39,12 +44,14 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const speciesValue = speciesInput ? speciesInput.toLowerCase() : selectRef.current!.value;
+
     dispatch(addItem(
       {
         id: uuid(),
-        name: { en: nameInput.toLowerCase() },
+        name: { ...animalNamesForAllLanguages, en: nameInput.toLowerCase() },
         imgSrc: imgSrcInput,
-        species: speciesInput.toLowerCase(),
+        species: speciesValue,
       },
     ));
     closeModal();
@@ -98,8 +105,10 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
                         <strong style={{ gridColumnStart: 1, gridColumnEnd: 3 }}>Species:</strong>
                         <select
                           id="animal-species"
+                          ref={selectRef}
                           className="form__text-input"
                           placeholder="Animal species"
+                          value={speciesInput}
                           onChange={(e) => setSpeciesInput(e.target.value)}
                         >
                           {
@@ -119,7 +128,6 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
                           type="text"
                           className="form__text-input"
                           placeholder="Animal species"
-                          value={speciesInput}
                           onChange={(e) => setSpeciesInput(e.target.value)}
                         />
                       </label>

@@ -56,7 +56,7 @@ const Home = () => {
             }) => (
               <AnimalCard key={id} name={name[activeLocale]} imgUrl={imgSrc} species={species} />
             ))
-            : <h2>No animals added yet!</h2>
+            : <h2 style={{ textAlign: 'center' }}>No animals added yet!</h2>
         }
       </div>
       <div className="animals__add-animal-button-wrapper">

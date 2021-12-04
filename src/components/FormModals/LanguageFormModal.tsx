@@ -43,6 +43,7 @@ const LanguageFormModal:FC<LanguageFormModalProps> = ({ closeModal }) => {
 
     dispatch(addLanguage(value));
     dispatch(addLanguageProperty(value));
+
     closeModal();
   };
 

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Layout.scss';
 import { MdLibraryAdd } from 'react-icons/md';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { setLocale } from '../../redux/languageSlice';
 import Button from '../../components/Buttons/Button';
@@ -9,8 +9,12 @@ import LanguageFormModal from '../../components/FormModals/LanguageFormModal';
 
 const Layout = () => {
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false);
-  const languages = useAppSelector((state) => state.languages.languages);
+  const languagesData = useAppSelector((state) => state.languages);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    localStorage.setItem('animal-filter-languages', JSON.stringify(languagesData));
+  }, [languagesData]);
 
   const onSelect = (value: string) => {
     dispatch(setLocale(value));
@@ -26,20 +30,42 @@ const Layout = () => {
         <div className="header-wrapper">
           <div className="header">
             <nav>
-              <Link to="/">
+              <NavLink to="/">
                 <img
                   src="./assets/images/logo.png"
                   alt="animal-logo"
                   className="header__logo"
                 />
-              </Link>
+              </NavLink>
             </nav>
+            <div className="header__navigation-wrapper">
+              <nav className="header__navigation">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => (isActive
+                    ? 'header__navigation-link header__navigation-link--active'
+                    : 'header__navigation-link')}
+                >
+                  Home
+                </NavLink>
+                <NavLink
+                  to="/translations"
+                  className={({ isActive }) => (isActive
+                    ? 'header__navigation-link header__navigation-link--active'
+                    : 'header__navigation-link')}
+                >
+                  Translations
+                </NavLink>
+              </nav>
+            </div>
             <div className="header__language-selection">
               <select
                 className="header__select-language"
                 onChange={(e) => onSelect(e.target.value)}
               >
-                {languages.map((item) => <option key={item}>{item.toUpperCase()}</option>)}
+                {languagesData
+                  .languages
+                  .map((item) => <option key={item}>{item}</option>)}
               </select>
               <Button
                 title={<MdLibraryAdd />}
