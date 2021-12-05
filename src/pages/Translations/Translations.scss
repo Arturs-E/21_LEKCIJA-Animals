@@ -6,10 +6,15 @@
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #444;
+  margin-bottom: 36px;
 
   & th, td {
     border: 1px solid #444;
     padding: 4px 12px;
+  }
+
+  & td[class = animal-translations__animal-name--input] {
+    padding: 0;
   }
 
   &__language-code {
@@ -18,6 +23,25 @@
 
   &__animal-name {
     text-transform: capitalize;
+  }
+
+  &__animal-name-input {
+    padding: 4px 12px;
+    border: none;
+    font-size: 16px;
+    color: #444;
+    width: 100%;
+    text-transform: capitalize;
+    line-height: 1.2;
+
+    &:focus-visible {
+      outline: 1px solid #28a745;
+    }
+  }
+
+  &__submit-button-wrapper {
+    display: flex;
+    justify-content: right;
   }
 
 }

@@ -40,46 +40,47 @@ const Translations = () => {
                 const numberOfLanguages = languageKeys.length;
 
                 return (
-                  languageValues.map((item, index) => {
-                    if (!index) {
-                      return (
-                        <tr key={item}>
-                          <th
-                            rowSpan={numberOfLanguages}
-                            className="animal-translations__animal-name"
+                  languageValues.map((item, index) => (
+                    <tr key={item}>
+                      {!index && (
+                      <th
+                        rowSpan={numberOfLanguages}
+                        className="animal-translations__animal-name"
+                      >
+                        {item}
+                      </th>
+                      )}
+                      <td className="animal-translations__language-code">{languageKeys[index]}</td>
+                      {!index
+                        ? <td className="animal-translations__animal-name">{item}</td>
+                        : (
+                          <td
+                            className="animal-translations__animal-name--input"
                           >
-                            {item}
-                          </th>
-                          <td className="animal-translations__language-code">{languageKeys[index]}</td>
-                          <td className="animal-translations__animal-name">{item}</td>
-                        </tr>
-                      );
-                    }
-                    return (numberOfLanguages > 1) && (
-                      <tr key={item}>
-                        <td className="animal-translations__language-code">{languageKeys[index]}</td>
-                        <td className="animal-translations__animal-name">
-                          <input
-                            type="text"
-                            value={translations[arrIndex][languageKeys[index]]}
-                            onChange={(e) => {
-                              const newTranslationsState = [...translations];
-                              const newLanguageTranslations = { ...newTranslationsState[arrIndex] };
-                              newLanguageTranslations[languageKeys[index]] = e.target.value.toLowerCase();
-                              newTranslationsState[arrIndex] = newLanguageTranslations;
-                              setTranslations(newTranslationsState);
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })
+                            <input
+                              type="text"
+                              className="animal-translations__animal-name-input"
+                              value={translations[arrIndex][languageKeys[index]]}
+                              onChange={(e) => {
+                                const newTranslationsState = [...translations];
+                                const newLanguageTranslations = { ...newTranslationsState[arrIndex] };
+                                newLanguageTranslations[languageKeys[index]] = e.target.value.toLowerCase();
+                                newTranslationsState[arrIndex] = newLanguageTranslations;
+                                setTranslations(newTranslationsState);
+                              }}
+                            />
+                          </td>
+                        )}
+                    </tr>
+                  ))
                 );
               })
              }
           </tbody>
         </table>
-        <Button type="submit" title="Submit" />
+        <div className="animal-translations__submit-button-wrapper">
+          <Button type="submit" title="Submit" />
+        </div>
       </form>
     </section>
   );
