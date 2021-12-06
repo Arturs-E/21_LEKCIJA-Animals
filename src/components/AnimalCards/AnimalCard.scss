@@ -1,6 +1,7 @@
 .animal-card {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
   row-gap: 8px;
   border: 1px solid transparent;
   border-radius: 4px;
