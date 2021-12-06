@@ -14,15 +14,24 @@ type AnimalFormModalProps = {
   uniqueAnimalSpecies: string[];
 }
 
+const errorInitialValue = {
+  showNameError: false,
+  nameErrorMessage: '',
+  showImageError: false,
+  imageErrorMessage: '',
+};
+
 const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpecies }) => {
   const [nameInput, setNameInput] = useState('');
   const [imgSrcInput, setImgSrcInput] = useState('');
   const [speciesInput, setSpeciesInput] = useState('');
+  const [showErrorMessage, setShowErrorMessage] = useState(errorInitialValue);
 
   const firstInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const selectRef = useRef<HTMLSelectElement>(null);
 
+  const animalData = useAppSelector((state) => state.animals);
   const availableLanguages = useAppSelector((state) => state.languages.languages);
   const dispatch = useAppDispatch();
 
@@ -45,6 +54,50 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const speciesValue = speciesInput ? speciesInput.toLowerCase() : selectRef.current!.value;
+
+    if (!nameInput) {
+      setShowErrorMessage((prevState) => (
+        {
+          ...prevState,
+          showNameError: true,
+          nameErrorMessage: 'Please fill in this field!',
+        }
+      ));
+      return;
+    }
+
+    if (animalData.map((item) => item.name.en).includes(nameInput.toLowerCase())) {
+      setShowErrorMessage((prevState) => (
+        {
+          ...prevState,
+          showNameError: true,
+          nameErrorMessage: 'Animal with this name has already been added!',
+        }
+      ));
+      return;
+    }
+
+    if (!imgSrcInput) {
+      setShowErrorMessage((prevState) => (
+        {
+          ...prevState,
+          showImageError: true,
+          imageErrorMessage: 'Please fill in this field!',
+        }
+      ));
+      return;
+    }
+
+    if (!CSS.supports('url', imgSrcInput)) {
+      setShowErrorMessage((prevState) => (
+        {
+          ...prevState,
+          showImageError: true,
+          imageErrorMessage: 'This is not a valid image URL!',
+        }
+      ));
+      return;
+    }
 
     dispatch(addItem(
       {
@@ -71,29 +124,50 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
                 <Button title={<GrClose />} clickHandler={closeModal} additionalClasses="button--icon" />
               </div>
               <div className="form__content">
-                <label htmlFor="animal-name" className="form__form-field">
-                  <strong>Name:</strong>
-                  <input
-                    id="animal-name"
-                    type="text"
-                    className="form__text-input"
-                    placeholder="Animal name"
-                    ref={firstInputRef}
-                    value={nameInput}
-                    onChange={(e) => setNameInput(e.target.value)}
-                  />
-                </label>
-                <label htmlFor="animal-source" className="form__form-field">
-                  <strong>Image source:</strong>
-                  <input
-                    id="animal-source"
-                    type="text"
-                    className="form__text-input"
-                    placeholder="Animal image"
-                    value={imgSrcInput}
-                    onChange={(e) => setImgSrcInput(e.target.value)}
-                  />
-                </label>
+                <div>
+                  <label htmlFor="animal-name" className="form__form-field" style={{ marginBottom: '3px' }}>
+                    <strong>Name:</strong>
+                    <input
+                      id="animal-name"
+                      type="text"
+                      className="form__text-input"
+                      placeholder="Animal name"
+                      ref={firstInputRef}
+                      value={nameInput}
+                      onChange={(e) => setNameInput(e.target.value)}
+                      onFocus={() => setShowErrorMessage((prevState) => (
+                        { ...prevState, showNameError: false }
+                      ))}
+                    />
+                  </label>
+                  <div className="form__error-message-wrapper">
+                    <span
+                      className="form__error-message-text"
+                    >
+                      {showErrorMessage.showNameError && showErrorMessage.nameErrorMessage}
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="animal-source" className="form__form-field">
+                    <strong>Image source:</strong>
+                    <input
+                      id="animal-source"
+                      type="text"
+                      className="form__text-input"
+                      placeholder="Animal image"
+                      value={imgSrcInput}
+                      onChange={(e) => setImgSrcInput(e.target.value)}
+                    />
+                  </label>
+                  <div className="form__error-message-wrapper">
+                    <span
+                      className="form__error-message-text"
+                    >
+                      {showErrorMessage.showImageError && showErrorMessage.imageErrorMessage}
+                    </span>
+                  </div>
+                </div>
                 {
                   showSpeciesSelectInput
                     ? (

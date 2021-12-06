@@ -5,20 +5,17 @@ type LanguageState = {
   languages: string[]
 }
 
-const getInitialState = () => {
+const getInitialState = (): LanguageState => {
   const savedLanguages = localStorage.getItem('animal-filter-languages');
   if (!savedLanguages) {
     return ({ locale: 'en', languages: ['en'] });
   }
-  const initialValue = JSON.parse(savedLanguages);
-  return initialValue;
+  return JSON.parse(savedLanguages);
 };
-
-const initialState: LanguageState = getInitialState();
 
 const languagesSlice = createSlice({
   name: 'languages',
-  initialState,
+  initialState: getInitialState(),
   reducers: {
     addLanguage: (state, action: PayloadAction<string>) => (
       { ...state, languages: [...state.languages, action.payload] }

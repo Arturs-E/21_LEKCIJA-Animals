@@ -10,20 +10,17 @@ type AnimalsState = {
   species: string;
 }
 
-const getInitialState = () => {
+const getInitialState = (): AnimalsState[] => {
   const savedTasks = localStorage.getItem('animal-filter');
   if (!savedTasks) {
     return [];
   }
-  const initialValue = JSON.parse(savedTasks);
-  return initialValue;
+  return JSON.parse(savedTasks);
 };
-
-const initialState: AnimalsState[] = getInitialState();
 
 const animalsSlice = createSlice({
   name: 'animals',
-  initialState,
+  initialState: getInitialState(),
   reducers: {
     addItem: (state, action: PayloadAction<AnimalsState>) => ([...state, action.payload]),
     addLanguageProperty: (state, action: PayloadAction<string>) => (
