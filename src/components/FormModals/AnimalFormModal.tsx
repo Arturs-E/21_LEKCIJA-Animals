@@ -88,7 +88,7 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
       return;
     }
 
-    if (!CSS.supports('url', imgSrcInput)) {
+    if (!CSS.supports('background-image', `url(${imgSrcInput})`)) {
       setShowErrorMessage((prevState) => (
         {
           ...prevState,
@@ -158,6 +158,9 @@ const AnimalFormModal:FC<AnimalFormModalProps> = ({ closeModal, uniqueAnimalSpec
                       placeholder="Animal image"
                       value={imgSrcInput}
                       onChange={(e) => setImgSrcInput(e.target.value)}
+                      onFocus={() => setShowErrorMessage((prevState) => (
+                        { ...prevState, showImageError: false }
+                      ))}
                     />
                   </label>
                   <div className="form__error-message-wrapper">
