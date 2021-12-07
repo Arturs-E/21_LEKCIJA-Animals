@@ -25,14 +25,10 @@
     max-width: 500px;
   }
 
-  &__form {
+  &__contents {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 36px;
   }
 
-  &__header {
-    display: flex;
-    justify-content: space-between;
-  }
 }
