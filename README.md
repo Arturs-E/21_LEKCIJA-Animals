@@ -1,4 +1,32 @@
-# Getting Started with Create React App
+# Animal filter App
+
+![Animal filter GIF](./Animal-filter.gif)
+
+Full assignment can be viewed [HERE](./Redux%20-%20Animal%20Filter.pdf).
+
+You need to create an app where you can add animals and list them. On load you grab
+animals from localStorage if you have some, otherwise you should see a message that no
+animals added and button **Add animal** which opens a **Add form**.
+
+In form you have three fields
+- Animal name
+- Animal image src
+- Animal species (select or input)
+- 
+In animal species field you need to choose species from previous defined animals or create
+a new one. When you press **add new species** select element needs to be replaced with an
+input element.
+
+Validation is required! **Wireframe attached at the bottom!**
+
+**Bonus:**
+Default language of this app is English, you need to add an option to add a new language .
+In order to carry out a word translation there, a new page is needed (/translations). In this
+page you will see all translations and will have an ability to translate it.
+
+---
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
