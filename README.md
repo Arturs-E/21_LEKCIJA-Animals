@@ -1,5 +1,7 @@
 # Animal filter App
 
+You can view the project here - https://arturs-e.github.io/21_lekcija_animals/
+
 ![Animal filter GIF](./Animal-filter.gif)
 
 Full assignment can be viewed [HERE](./Redux%20-%20Animal%20Filter.pdf).
