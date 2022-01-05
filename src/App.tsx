@@ -8,7 +8,7 @@ import Layout from './pages/Layout/Layout';
 import Translations from './pages/Translations/Translations';
 
 const App = () => (
-  // Use BrowserRouter for normal workflow
+  // Use BrowserRouter for normal workflow cases
   <HashRouter>
     <Routes>
       <Route path="/" element={<Layout />}>

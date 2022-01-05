@@ -1,6 +1,6 @@
 # Animal filter App
 
-You can view the project here - https://arturs-e.github.io/21_lekcija_animals/
+You can view the project here - https://arturs-e.github.io/21_lekcija_animals-react/
 
 ![Animal filter GIF](./Animal-filter.gif)
 
