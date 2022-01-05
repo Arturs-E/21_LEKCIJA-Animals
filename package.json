@@ -1,6 +1,6 @@
 {
-  "name": "21_lekcija_animals",
-  "homepage": "https://arturs-e.github.io/21_LEKCIJA_Animals",
+  "name": "21_lekcija_animals-react",
+  "homepage": "https://arturs-e.github.io/21_lekcija_animals-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
