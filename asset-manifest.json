@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/21_LEKCIJA_Animals/static/css/main.d87208ed.chunk.css",
-    "main.js": "/21_LEKCIJA_Animals/static/js/main.97f820bd.chunk.js",
-    "main.js.map": "/21_LEKCIJA_Animals/static/js/main.97f820bd.chunk.js.map",
-    "runtime-main.js": "/21_LEKCIJA_Animals/static/js/runtime-main.2a2f5a28.js",
-    "runtime-main.js.map": "/21_LEKCIJA_Animals/static/js/runtime-main.2a2f5a28.js.map",
-    "static/js/2.abce91f5.chunk.js": "/21_LEKCIJA_Animals/static/js/2.abce91f5.chunk.js",
-    "static/js/2.abce91f5.chunk.js.map": "/21_LEKCIJA_Animals/static/js/2.abce91f5.chunk.js.map",
-    "static/js/3.767c4b85.chunk.js": "/21_LEKCIJA_Animals/static/js/3.767c4b85.chunk.js",
-    "static/js/3.767c4b85.chunk.js.map": "/21_LEKCIJA_Animals/static/js/3.767c4b85.chunk.js.map",
-    "index.html": "/21_LEKCIJA_Animals/index.html",
-    "static/css/main.d87208ed.chunk.css.map": "/21_LEKCIJA_Animals/static/css/main.d87208ed.chunk.css.map",
-    "static/js/2.abce91f5.chunk.js.LICENSE.txt": "/21_LEKCIJA_Animals/static/js/2.abce91f5.chunk.js.LICENSE.txt"
+    "main.css": "/21_lekcija_animals-react/static/css/main.725b9220.chunk.css",
+    "main.js": "/21_lekcija_animals-react/static/js/main.075e1014.chunk.js",
+    "main.js.map": "/21_lekcija_animals-react/static/js/main.075e1014.chunk.js.map",
+    "runtime-main.js": "/21_lekcija_animals-react/static/js/runtime-main.5fe2589b.js",
+    "runtime-main.js.map": "/21_lekcija_animals-react/static/js/runtime-main.5fe2589b.js.map",
+    "static/js/2.e6e1ff77.chunk.js": "/21_lekcija_animals-react/static/js/2.e6e1ff77.chunk.js",
+    "static/js/2.e6e1ff77.chunk.js.map": "/21_lekcija_animals-react/static/js/2.e6e1ff77.chunk.js.map",
+    "static/js/3.afdff240.chunk.js": "/21_lekcija_animals-react/static/js/3.afdff240.chunk.js",
+    "static/js/3.afdff240.chunk.js.map": "/21_lekcija_animals-react/static/js/3.afdff240.chunk.js.map",
+    "index.html": "/21_lekcija_animals-react/index.html",
+    "static/css/main.725b9220.chunk.css.map": "/21_lekcija_animals-react/static/css/main.725b9220.chunk.css.map",
+    "static/js/2.e6e1ff77.chunk.js.LICENSE.txt": "/21_lekcija_animals-react/static/js/2.e6e1ff77.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2a2f5a28.js",
-    "static/js/2.abce91f5.chunk.js",
-    "static/css/main.d87208ed.chunk.css",
-    "static/js/main.97f820bd.chunk.js"
+    "static/js/runtime-main.5fe2589b.js",
+    "static/js/2.e6e1ff77.chunk.js",
+    "static/css/main.725b9220.chunk.css",
+    "static/js/main.075e1014.chunk.js"
   ]
 }
